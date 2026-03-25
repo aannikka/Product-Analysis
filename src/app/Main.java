@@ -12,12 +12,12 @@ import static utils.Print.*;
 public class Main {
     public static void main(String[] args) {
 
-        ProductService productService = new ProductService();
+        ProductRepository repository = new ProductRepository();
+        ProductService productService = new ProductService(repository);
 
-        List<Product> products = ProductRepository.getAllProducts();
-        Map<String, List<Product>> productsGroupedByCategory = productService.groupByCategory(products);
-        Map<String, Double> averagePriceByCategory = productService.findAveragePriceByCategory(products);
-        String categoryWithBiggestAveragePrice = productService.findCategoryByBiggestAverage(products);
+        Map<String, List<Product>> productsGroupedByCategory = productService.groupByCategory();
+        Map<String, Double> averagePriceByCategory = productService.findAveragePriceByCategory();
+        String categoryWithBiggestAveragePrice = productService.findCategoryByBiggestAverage();
 
         printProductsGroupedByCategory(productsGroupedByCategory);
         printAveragePrices(averagePriceByCategory);
