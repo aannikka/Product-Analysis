@@ -1,13 +1,14 @@
 package app;
 
-import repositories.ProductRepository;
-import services.ProductService;
-import models.Product;
+import app.repositories.ProductRepository;
+import app.services.ProductService;
+import app.models.Product;
+import app.utils.Print;
 
 import java.util.List;
 import java.util.Map;
 
-import static utils.Print.*;
+import static app.utils.Print.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,10 +18,14 @@ public class Main {
 
         Map<String, List<Product>> productsGroupedByCategory = productService.groupByCategory();
         Map<String, Double> averagePriceByCategory = productService.findAveragePriceByCategory();
-        String categoryWithBiggestAveragePrice = productService.findCategoryByBiggestAverage();
 
         printProductsGroupedByCategory(productsGroupedByCategory);
         printAveragePrices(averagePriceByCategory);
-        printCategoryBiggestAveragePrice(categoryWithBiggestAveragePrice);
+
+        productService.findCategoryByBiggestAverage()
+                .ifPresentOrElse(
+                        Print::printCategoryBiggestAveragePrice,
+                        () -> System.out.println("\nNo category found")
+                );
     }
 }

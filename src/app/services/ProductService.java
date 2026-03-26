@@ -1,7 +1,7 @@
-package services;
+package app.services;
 
-import models.Product;
-import repositories.ProductRepository;
+import app.models.Product;
+import app.repositories.ProductRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,12 +32,11 @@ public class ProductService {
    }
 
    //find category with the biggest average price
-    public String findCategoryByBiggestAverage() {
+    public Optional<String> findCategoryByBiggestAverage() {
        return findAveragePriceByCategory()
                .entrySet()
                .stream()
                .max(Map.Entry.comparingByValue())
-               .map(Map.Entry::getKey)
-               .orElse("No category");
+               .map(Map.Entry::getKey);
     }
 }

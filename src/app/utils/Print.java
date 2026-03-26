@@ -1,6 +1,6 @@
-package utils;
+package app.utils;
 
-import models.Product;
+import app.models.Product;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +24,6 @@ public class Print {
     }
 
     public static void printCategoryBiggestAveragePrice(String category) {
-        System.out.println("\nCategory with the biggest average price: " +  category);
+        System.out.println("\nCategory with the biggest average price: " + category);
     }
 }

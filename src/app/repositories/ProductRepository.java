@@ -1,6 +1,6 @@
-package repositories;
+package app.repositories;
 
-import models.Product;
+import app.models.Product;
 import java.util.List;
 
 public class ProductRepository {
